@@ -49,112 +49,71 @@
       z-index: -3;
     }
 
-    .circuit {
+   .circuit-line {
   position: fixed;
-  inset: 0;
+  width: 260px;
+  height: 120px;
   pointer-events: none;
   z-index: -2;
-  overflow: hidden;
-}
-
-.circuit svg {
-  position: absolute;
-  width: 140vw;
-  height: 180px;
-  left: -20vw;
   opacity: 0;
-  filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.9));
+  border-top: 2px solid rgba(0, 162, 255, 0.75);
+  border-right: 2px solid rgba(0, 162, 255, 0.75);
+  border-bottom: 2px solid rgba(57, 255, 182, 0.55);
+  filter: drop-shadow(0 0 8px rgba(0, 162, 255, 0.8));
 }
 
-.circuit .trace1 {
+.line-a {
   top: 18%;
-  animation: traceMove1 4s infinite;
+  left: -300px;
+  animation: circuitA 6s infinite;
 }
 
-.circuit .trace2 {
+.line-b {
   top: 62%;
-  animation: traceMove2 5.5s infinite;
+  right: -300px;
+  transform: rotate(180deg);
+  animation: circuitB 8s infinite;
 }
 
-.circuit path {
-  fill: none;
-  stroke: #00a2ff;
-  stroke-width: 2;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
-}
-
-.circuit .trace2 path {
-  stroke: #39ffb6;
-}
-
-@keyframes traceMove1 {
-  0%, 70%, 100% {
+@keyframes circuitA {
+  0%, 75%, 100% {
     opacity: 0;
-    transform: translateX(-30vw);
+    transform: translateX(0);
   }
-  75% {
-    opacity: .9;
+
+  78% {
+    opacity: 0.7;
   }
+
   90% {
-    opacity: .35;
+    opacity: 0.35;
   }
+
   100% {
-    transform: translateX(30vw);
+    transform: translateX(120vw);
     opacity: 0;
   }
 }
 
-@keyframes traceMove2 {
-  0%, 76%, 100% {
+@keyframes circuitB {
+  0%, 80%, 100% {
     opacity: 0;
-    transform: translateX(30vw);
+    transform: translateX(0) rotate(180deg);
   }
-  81% {
-    opacity: .7;
+
+  83% {
+    opacity: 0.6;
   }
-  92% {
-    opacity: .3;
+
+  94% {
+    opacity: 0.3;
   }
+
   100% {
-    transform: translateX(-30vw);
+    transform: translateX(-120vw) rotate(180deg);
     opacity: 0;
   }
 }
-
-    @keyframes dataflow1 {
-      0%, 78%, 100% {
-        transform: translateX(-110%);
-        opacity: 0;
-      }
-      80% {
-        opacity: .75;
-      }
-      86% {
-        opacity: .35;
-      }
-      92% {
-        transform: translateX(110%);
-        opacity: 0;
-      }
-    }
-
-    @keyframes dataflow2 {
-      0%, 82%, 100% {
-        transform: translateX(110%);
-        opacity: 0;
-      }
-      84% {
-        opacity: .6;
-      }
-      90% {
-        opacity: .25;
-      }
-      96% {
-        transform: translateX(-110%);
-        opacity: 0;
-      }
-    }
 
     nav {
       position: sticky;
@@ -342,10 +301,8 @@
 </head>
 
 <body>
-<div class="circuit">
-  <svg class="trace1" viewBox="0 0 1200 180" preserveAspectRatio="none">
-    <path d="M0 90 H160 V45 H330 V110 H520 V65 H720 V130 H900 V80 H1200" />
-  </svg>
+<div class="circuit-line line-a"></div>
+<div class="circuit-line line-b"></div>
 
   <svg class="trace2" viewBox="0 0 1200 180" preserveAspectRatio="none">
     <path d="M1200 95 H1040 V140 H850 V70 H650 V120 H430 V55 H230 V100 H0" />
