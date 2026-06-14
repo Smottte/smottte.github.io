@@ -48,57 +48,63 @@
       z-index: -3;
     }
 
-  .segment {
+  .data-pulse {
   position: fixed;
-  height: 3px;
   width: 180px;
-  opacity: 0;
+  height: 6px;
   pointer-events: none;
   z-index: -2;
-  background: linear-gradient(90deg, transparent, rgba(0,162,255,.5), #00a2ff);
-  box-shadow: 0 0 12px #00a2ff;
+  opacity: 0;
 }
 
-.dot {
-  position: fixed;
+.data-pulse::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: #00a2ff;
-  box-shadow: 0 0 20px #00a2ff;
-  opacity: 0;
-  pointer-events: none;
-  z-index: -2;
+  box-shadow: 0 0 10px #00a2ff, 0 0 24px #00a2ff;
+  transform: translateY(-50%);
 }
 
-.s1 { top: 24%; left: -200px; animation: seg1 4s infinite; }
-.s2 { top: 24%; left: 38%; width: 3px; height: 150px; animation: seg2 4s infinite; }
-.s3 { top: 47%; left: 38%; animation: seg3 4s infinite; }
-.d1 { animation: dotPath 4s infinite; }
-
-@keyframes seg1 {
-  0%, 65%, 100% { opacity: 0; transform: translateX(0); }
-  68%, 78% { opacity: .8; transform: translateX(45vw); }
-  85% { opacity: 0; }
+.data-pulse::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 170px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(0,162,255,.2), rgba(0,162,255,.85));
+  box-shadow: 0 0 12px rgba(0,162,255,.65);
+  transform: translateY(-50%);
 }
 
-@keyframes seg2 {
-  0%, 76%, 100% { opacity: 0; }
-  78%, 86% { opacity: .8; }
-  92% { opacity: 0; }
+.pulse-a { top: 24%; animation: pulseA 4s infinite; }
+.pulse-b { top: 58%; animation: pulseB 6s infinite; }
+.pulse-c { top: 76%; animation: pulseC 8s infinite; }
+
+@keyframes pulseA {
+  0%, 65%, 100% { opacity: 0; left: -220px; }
+  68% { opacity: .9; }
+  95% { opacity: .55; }
+  100% { left: 110vw; opacity: 0; }
 }
 
-@keyframes seg3 {
-  0%, 84%, 100% { opacity: 0; transform: translateX(0); }
-  86%, 98% { opacity: .8; transform: translateX(65vw); }
+@keyframes pulseB {
+  0%, 75%, 100% { opacity: 0; left: -220px; }
+  78% { opacity: .7; }
+  96% { opacity: .4; }
+  100% { left: 110vw; opacity: 0; }
 }
 
-@keyframes dotPath {
-  0%, 65%, 100% { opacity: 0; left: -10px; top: 24%; }
-  68% { opacity: 1; left: -10px; top: 24%; }
-  78% { left: 38%; top: 24%; }
-  86% { left: 38%; top: 47%; }
-  98% { opacity: 1; left: 110vw; top: 47%; }
+@keyframes pulseC {
+  0%, 82%, 100% { opacity: 0; left: -220px; }
+  85% { opacity: .65; }
+  97% { opacity: .35; }
+  100% { left: 110vw; opacity: 0; }
 }
     nav {
       position: sticky;
@@ -286,10 +292,9 @@
 </head>
 
 <body>
-<div class="segment s1"></div>
-<div class="segment s2"></div>
-<div class="segment s3"></div>
-<div class="dot d1"></div>
+<div class="data-pulse pulse-a"></div>
+<div class="data-pulse pulse-b"></div>
+<div class="data-pulse pulse-c"></div>
   
   <nav>
     <div class="inner">
