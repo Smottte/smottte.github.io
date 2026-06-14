@@ -48,75 +48,200 @@
       z-index: -3;
     }
 
-  .trace {
-    position: fixed;
-    width: 160px;
-    height: 3px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,162,255,.3),
-        rgba(0,162,255,1)
-    );
-
-    z-index: -2;
-    pointer-events: none;
-
-    box-shadow:
-        0 0 8px #00a2ff,
-        0 0 18px #00a2ff;
-
-    animation: traceMove 3s linear infinite;
+  .data-pulse {
+  position: fixed;
+  width: 170px;
+  height: 6px;
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0;
+  transform-origin: right center;
 }
-    @keyframes traceMove {
 
-    0% {
-        left: -300px;
-        top: 20%;
-        transform: rotate(0deg);
-    }
+.data-pulse::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #00a2ff;
+  box-shadow:
+    0 0 10px #00a2ff,
+    0 0 24px #00a2ff,
+    0 0 40px rgba(0,162,255,.7);
+  transform: translateY(-50%);
+}
 
-    25% {
-        left: 35%;
-        top: 20%;
-        transform: rotate(0deg);
-    }
+.data-pulse::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 160px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,162,255,.15),
+    rgba(0,162,255,.75)
+  );
+  box-shadow: 0 0 12px rgba(0,162,255,.65);
+  transform: translateY(-50%);
+}
 
-    26% {
-        left: 35%;
-        top: 20%;
-        transform: rotate(90deg);
-    }
+.pulse-a {
+  animation: pulsePathA 5.5s infinite;
+}
 
-    45% {
-        left: 35%;
-        top: 40%;
-        transform: rotate(90deg);
-    }
+.pulse-b {
+  animation: pulsePathB 7.5s infinite;
+}
 
-    46% {
-        left: 35%;
-        top: 40%;
-        transform: rotate(0deg);
-    }
+.pulse-c {
+  animation: pulsePathC 9s infinite;
+}
 
-    75% {
-        left: 85%;
-        top: 40%;
-        transform: rotate(0deg);
-    }
+@keyframes pulsePathA {
+  0%, 68%, 100% {
+    opacity: 0;
+    left: -220px;
+    top: 22%;
+    transform: rotate(0deg);
+  }
 
-    76% {
-        left: 85%;
-        top: 40%;
-        transform: rotate(90deg);
-    }
+  70% {
+    opacity: .9;
+    left: -220px;
+    top: 22%;
+    transform: rotate(0deg);
+  }
 
-    100% {
-        left: 85%;
-        top: 80%;
-        transform: rotate(90deg);
-    }
+  78% {
+    left: 42%;
+    top: 22%;
+    transform: rotate(0deg);
+  }
+
+  79% {
+    left: 42%;
+    top: 22%;
+    transform: rotate(90deg);
+  }
+
+  86% {
+    left: 42%;
+    top: 46%;
+    transform: rotate(90deg);
+  }
+
+  87% {
+    left: 42%;
+    top: 46%;
+    transform: rotate(0deg);
+  }
+
+  98% {
+    opacity: .55;
+    left: 110vw;
+    top: 46%;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulsePathB {
+  0%, 74%, 100% {
+    opacity: 0;
+    left: -220px;
+    top: 63%;
+    transform: rotate(0deg);
+  }
+
+  76% {
+    opacity: .75;
+    left: -220px;
+    top: 63%;
+    transform: rotate(0deg);
+  }
+
+  84% {
+    left: 28%;
+    top: 63%;
+    transform: rotate(0deg);
+  }
+
+  85% {
+    left: 28%;
+    top: 63%;
+    transform: rotate(-90deg);
+  }
+
+  91% {
+    left: 28%;
+    top: 38%;
+    transform: rotate(-90deg);
+  }
+
+  92% {
+    left: 28%;
+    top: 38%;
+    transform: rotate(0deg);
+  }
+
+  99% {
+    opacity: .45;
+    left: 110vw;
+    top: 38%;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulsePathC {
+  0%, 80%, 100% {
+    opacity: 0;
+    left: -220px;
+    top: 78%;
+    transform: rotate(0deg);
+  }
+
+  82% {
+    opacity: .65;
+    left: -220px;
+    top: 78%;
+    transform: rotate(0deg);
+  }
+
+  88% {
+    left: 55%;
+    top: 78%;
+    transform: rotate(0deg);
+  }
+
+  89% {
+    left: 55%;
+    top: 78%;
+    transform: rotate(-90deg);
+  }
+
+  94% {
+    left: 55%;
+    top: 58%;
+    transform: rotate(-90deg);
+  }
+
+  95% {
+    left: 55%;
+    top: 58%;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    left: 110vw;
+    top: 58%;
+    transform: rotate(0deg);
+  }
 }
     nav {
       position: sticky;
@@ -304,7 +429,9 @@
 </head>
 
 <body>
-<div class="trace"></div>
+<div class="data-pulse pulse-a"></div>
+<div class="data-pulse pulse-b"></div>
+<div class="data-pulse pulse-c"></div>
   
   <nav>
     <div class="inner">
