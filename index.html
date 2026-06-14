@@ -48,53 +48,72 @@
       z-index: -3;
     }
 
-   .packet {
+  .signal {
   position: fixed;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #00a2ff;
-  box-shadow: 0 0 12px #00a2ff;
+  left: -35vw;
+  width: 420px;
+  height: 80px;
   pointer-events: none;
   z-index: -2;
+  opacity: 0;
+  filter: drop-shadow(0 0 10px rgba(0, 162, 255, 0.9));
 }
 
-.p1 {
-  top: 18%;
-  animation: packet1 12s linear infinite;
+.signal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #00a2ff;
+  clip-path: polygon(
+    0% 50%,
+    22% 50%,
+    30% 20%,
+    48% 20%,
+    56% 70%,
+    74% 70%,
+    82% 40%,
+    100% 40%,
+    100% 45%,
+    84% 45%,
+    76% 75%,
+    54% 75%,
+    46% 25%,
+    32% 25%,
+    24% 55%,
+    0% 55%
+  );
 }
 
-.p2 {
-  top: 52%;
-  animation: packet2 15s linear infinite;
+.signal-a {
+  top: 24%;
+  animation: signalMove 4s infinite;
 }
 
-.p3 {
-  top: 78%;
-  animation: packet3 18s linear infinite;
+.signal-b {
+  top: 63%;
+  animation: signalMove 6.5s infinite;
+  transform: scaleX(-1);
 }
 
-@keyframes packet1 {
-  from { left: -10px; opacity: 0; }
-  5% { opacity: .8; }
-  95% { opacity: .8; }
-  to { left: 100vw; opacity: 0; }
-}
+@keyframes signalMove {
+  0%, 70%, 100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
 
-@keyframes packet2 {
-  from { right: -10px; opacity: 0; }
-  5% { opacity: .6; }
-  95% { opacity: .6; }
-  to { right: 100vw; opacity: 0; }
-}
+  73% {
+    opacity: 0.85;
+  }
 
-@keyframes packet3 {
-  from { left: -10px; opacity: 0; }
-  5% { opacity: .5; }
-  95% { opacity: .5; }
-  to { left: 100vw; opacity: 0; }
-}
+  88% {
+    opacity: 0.35;
+  }
 
+  100% {
+    transform: translateX(150vw);
+    opacity: 0;
+  }
+}
     nav {
       position: sticky;
       top: 0;
@@ -281,10 +300,8 @@
 </head>
 
 <body>
-<div class="packet p1"></div>
-<div class="packet p2"></div>
-<div class="packet p3"></div>
-
+<div class="signal signal-a"></div>
+<div class="signal signal-b"></div>
   <nav>
     <div class="inner">
       <div class="brand">Sawyer Mote</div>
