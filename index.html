@@ -50,25 +50,25 @@
     }
 
     .circuit {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -2;
-      overflow: hidden;
-    }
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  overflow: hidden;
+}
 
-    .circuit svg {
+.circuit svg {
   position: absolute;
   width: 140vw;
-  height: 220px;
+  height: 180px;
   left: -20vw;
   opacity: 0;
-  filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.9));
+  filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.9));
 }
 
 .circuit .trace1 {
   top: 18%;
-  animation: traceMove1 3.8s infinite;
+  animation: traceMove1 4s infinite;
 }
 
 .circuit .trace2 {
@@ -79,53 +79,45 @@
 .circuit path {
   fill: none;
   stroke: #00a2ff;
-  stroke-width: 3;
+  stroke-width: 2;
   stroke-linecap: square;
   stroke-linejoin: miter;
-  stroke-dasharray: 90 900;
 }
 
 .circuit .trace2 path {
   stroke: #39ffb6;
-  stroke-dasharray: 70 850;
 }
 
 @keyframes traceMove1 {
-  0%, 72%, 100% {
+  0%, 70%, 100% {
     opacity: 0;
-    transform: translateX(-25vw);
+    transform: translateX(-30vw);
   }
-
   75% {
-    opacity: .8;
+    opacity: .9;
   }
-
   90% {
-    opacity: .45;
+    opacity: .35;
   }
-
   100% {
-    transform: translateX(25vw);
+    transform: translateX(30vw);
     opacity: 0;
   }
 }
 
 @keyframes traceMove2 {
-  0%, 78%, 100% {
+  0%, 76%, 100% {
     opacity: 0;
-    transform: translateX(25vw);
+    transform: translateX(30vw);
   }
-
   81% {
-    opacity: .65;
+    opacity: .7;
   }
-
-  93% {
+  92% {
     opacity: .3;
   }
-
   100% {
-    transform: translateX(-25vw);
+    transform: translateX(-30vw);
     opacity: 0;
   }
 }
@@ -350,13 +342,13 @@
 </head>
 
 <body>
-  <div class="circuit">
-  <svg class="trace1" viewBox="0 0 1200 220" preserveAspectRatio="none">
-    <path d="M0 110 L180 110 L240 60 L390 60 L460 130 L620 130 L700 80 L860 80 L940 145 L1200 145" />
+<div class="circuit">
+  <svg class="trace1" viewBox="0 0 1200 180" preserveAspectRatio="none">
+    <path d="M0 90 H160 V45 H330 V110 H520 V65 H720 V130 H900 V80 H1200" />
   </svg>
 
-  <svg class="trace2" viewBox="0 0 1200 220" preserveAspectRatio="none">
-    <path d="M1200 95 L1000 95 L930 150 L760 150 L690 80 L520 80 L450 125 L300 125 L220 70 L0 70" />
+  <svg class="trace2" viewBox="0 0 1200 180" preserveAspectRatio="none">
+    <path d="M1200 95 H1040 V140 H850 V70 H650 V120 H430 V55 H230 V100 H0" />
   </svg>
 </div>
 
