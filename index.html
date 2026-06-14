@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +28,20 @@
       position: fixed;
       inset: 0;
       background:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 120px,
+          rgba(0,162,255,.035) 121px,
+          rgba(0,162,255,.035) 122px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 120px,
+          rgba(57,255,182,.025) 121px,
+          rgba(57,255,182,.025) 122px
+        ),
         radial-gradient(circle at 20% 20%, rgba(0, 255, 170, 0.13), transparent 25%),
         radial-gradient(circle at 80% 10%, rgba(0, 132, 255, 0.17), transparent 30%),
         radial-gradient(circle at 50% 90%, rgba(57, 255, 182, 0.08), transparent 30%),
@@ -35,78 +50,77 @@
     }
 
     .circuit {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -2;
-    overflow: hidden;
-}
-
-.circuit::before,
-.circuit::after {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,180,255,.8),
-        rgba(57,255,182,.8),
-        transparent
-    );
-
-    opacity: 0;
-}
-
-.circuit::before {
-    top: 25%;
-    animation: dataflow1 5s infinite;
-}
-
-.circuit::after {
-    top: 70%;
-    animation: dataflow2 7s infinite;
-}
-
-@keyframes dataflow1 {
-    0%,85%,100% {
-        transform: translateX(-100%);
-        opacity: 0;
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      overflow: hidden;
     }
 
-    86% {
+    .circuit::before,
+    .circuit::after {
+      content: "";
+      position: absolute;
+      opacity: 0;
+      filter: drop-shadow(0 0 12px rgba(0,180,255,.85));
+    }
+
+    .circuit::before {
+      width: 1200px;
+      height: 90px;
+      top: 24%;
+      background:
+        linear-gradient(90deg, transparent 0%, transparent 10%, #00a2ff 11%, #00a2ff 32%, transparent 33%),
+        linear-gradient(135deg, transparent 37%, #00a2ff 39%, #00a2ff 41%, transparent 43%),
+        linear-gradient(90deg, transparent 48%, #39ffb6 50%, #39ffb6 70%, transparent 71%),
+        linear-gradient(45deg, transparent 73%, #00a2ff 75%, #00a2ff 77%, transparent 79%);
+      animation: dataflow1 3s infinite;
+    }
+
+    .circuit::after {
+      width: 1400px;
+      height: 100px;
+      top: 68%;
+      background:
+        linear-gradient(90deg, transparent 0%, transparent 15%, #39ffb6 16%, #39ffb6 34%, transparent 35%),
+        linear-gradient(45deg, transparent 39%, #00a2ff 41%, #00a2ff 43%, transparent 45%),
+        linear-gradient(90deg, transparent 50%, #00a2ff 52%, #00a2ff 76%, transparent 77%),
+        linear-gradient(135deg, transparent 80%, #39ffb6 82%, #39ffb6 84%, transparent 86%);
+      animation: dataflow2 4.5s infinite;
+    }
+
+    @keyframes dataflow1 {
+      0%, 78%, 100% {
+        transform: translateX(-110%);
+        opacity: 0;
+      }
+      80% {
+        opacity: .75;
+      }
+      86% {
+        opacity: .35;
+      }
+      92% {
+        transform: translateX(110%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes dataflow2 {
+      0%, 82%, 100% {
+        transform: translateX(110%);
+        opacity: 0;
+      }
+      84% {
         opacity: .6;
-    }
-
-    100% {
-        transform: translateX(100%);
+      }
+      90% {
+        opacity: .25;
+      }
+      96% {
+        transform: translateX(-110%);
         opacity: 0;
-    }
-}
-
-@keyframes dataflow2 {
-    0%,90%,100% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-
-    91% {
-        opacity: .4;
-    }
-
-    100% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-}
-
-    @keyframes electricFlash {
-      0%, 72%, 100% { opacity: 0; transform: translateX(-20px); }
-      73% { opacity: 0.8; transform: translateX(0); }
-      74% { opacity: 0.15; }
-      75% { opacity: 0.65; transform: translateX(15px); }
-      76% { opacity: 0; }
+      }
     }
 
     nav {
@@ -145,16 +159,16 @@
     .container {
       max-width: 1100px;
       margin: auto;
-      padding: 70px 24px;
+      padding: 50px 24px;
     }
 
     .hero {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    padding-top: 50px;
-    padding-bottom: 30px;
-   }
+      min-height: 45vh;
+      display: flex;
+      align-items: center;
+      padding-top: 45px;
+      padding-bottom: 20px;
+    }
 
     .badge {
       display: inline-block;
@@ -274,9 +288,7 @@
       font-size: 0.9rem;
     }
 
-    a {
-      color: #39ffb6;
-    }
+    a { color: #39ffb6; }
 
     footer {
       text-align: center;
@@ -287,6 +299,7 @@
 
     @media (max-width: 700px) {
       nav .links { display: none; }
+
       .hero {
         min-height: auto;
         padding-top: 70px;
@@ -296,7 +309,8 @@
 </head>
 
 <body>
-<div class="circuit"></div>
+  <div class="circuit"></div>
+
   <nav>
     <div class="inner">
       <div class="brand">Sawyer Mote</div>
@@ -443,3 +457,4 @@
 
 </body>
 </html>
+```
