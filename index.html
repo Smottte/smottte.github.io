@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +6,7 @@
   <title>Sawyer Mote | Cybersecurity Portfolio</title>
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     * {
       box-sizing: border-box;
@@ -22,6 +19,7 @@
       background: #050816;
       color: #e6edf3;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -29,10 +27,34 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 20%, rgba(0, 255, 170, 0.12), transparent 25%),
-        radial-gradient(circle at 80% 10%, rgba(0, 132, 255, 0.14), transparent 30%),
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 170, 0.13), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(0, 132, 255, 0.17), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(57, 255, 182, 0.08), transparent 30%),
         linear-gradient(135deg, #050816, #07111f 50%, #030712);
-      z-index: -1;
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0;
+      background:
+        linear-gradient(115deg, transparent 0%, transparent 18%, rgba(0, 162, 255, 0.65) 18.5%, transparent 19%),
+        linear-gradient(125deg, transparent 0%, transparent 42%, rgba(57, 255, 255, 0.45) 42.5%, transparent 43%),
+        linear-gradient(95deg, transparent 0%, transparent 66%, rgba(0, 102, 255, 0.5) 66.5%, transparent 67%);
+      clip-path: polygon(0 25%, 20% 20%, 32% 36%, 48% 25%, 61% 45%, 78% 33%, 100% 50%, 100% 56%, 78% 39%, 61% 51%, 48% 31%, 32% 42%, 20% 26%, 0 31%);
+      animation: electricFlash 7s infinite;
+    }
+
+    @keyframes electricFlash {
+      0%, 72%, 100% { opacity: 0; transform: translateX(-20px); }
+      73% { opacity: 0.8; transform: translateX(0); }
+      74% { opacity: 0.15; }
+      75% { opacity: 0.65; transform: translateX(15px); }
+      76% { opacity: 0; }
     }
 
     nav {
@@ -60,9 +82,7 @@
       font-size: 0.95rem;
     }
 
-    nav a:hover {
-      color: #39ffb6;
-    }
+    nav a:hover { color: #39ffb6; }
 
     .brand {
       font-weight: 700;
@@ -138,9 +158,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .button:hover {
-      transform: translateY(-3px);
-    }
+    .button:hover { transform: translateY(-3px); }
 
     .primary {
       background: #39ffb6;
@@ -154,9 +172,7 @@
       background: rgba(255, 255, 255, 0.05);
     }
 
-    section {
-      padding: 70px 0;
-    }
+    section { padding: 70px 0; }
 
     .grid {
       display: grid;
@@ -170,6 +186,7 @@
       border-radius: 18px;
       padding: 24px;
       transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      animation: fadeIn 0.8s ease forwards;
     }
 
     .card:hover {
@@ -178,13 +195,14 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    .card p, li {
-      color: #b7c3d0;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    ul {
-      padding-left: 20px;
-    }
+    .card p, li { color: #b7c3d0; }
+
+    ul { padding-left: 20px; }
 
     .skills {
       display: flex;
@@ -201,6 +219,10 @@
       font-size: 0.9rem;
     }
 
+    a {
+      color: #39ffb6;
+    }
+
     footer {
       text-align: center;
       padding: 30px;
@@ -209,10 +231,7 @@
     }
 
     @media (max-width: 700px) {
-      nav .links {
-        display: none;
-      }
-
+      nav .links { display: none; }
       .hero {
         min-height: auto;
         padding-top: 70px;
@@ -227,6 +246,7 @@
     <div class="inner">
       <div class="brand">Sawyer Mote</div>
       <div class="links">
+        <a href="#skills">Skills</a>
         <a href="#about">About</a>
         <a href="#certs">Certifications</a>
         <a href="#projects">Projects</a>
@@ -248,9 +268,25 @@
         </p>
 
         <div class="buttons">
-          <a class="button primary" href="https://labs.sawyermote.com" target="_blank">View Lab Notes</a>
+          <a class="button primary" href="/resume.pdf" target="_blank">View Resume</a>
           <a class="button secondary" href="#projects">View Projects</a>
         </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <span class="skill">Windows Administration</span>
+        <span class="skill">Microsoft 365</span>
+        <span class="skill">Entra ID</span>
+        <span class="skill">Active Directory</span>
+        <span class="skill">Incident Response</span>
+        <span class="skill">SIEM Monitoring</span>
+        <span class="skill">Endpoint Support</span>
+        <span class="skill">Networking</span>
+        <span class="skill">Threat Hunting</span>
+        <span class="skill">Security Fundamentals</span>
       </div>
     </section>
 
@@ -292,7 +328,7 @@
           <h3>Currently Studying</h3>
           <ul>
             <li>SANS FOR509</li>
-            <li>SC:102</li>
+            <li>SC-102</li>
           </ul>
         </div>
       </div>
@@ -328,34 +364,18 @@
       <h2>Lab Documentation</h2>
       <div class="card">
         <p>
-          My technical lab notes and writeups are published separately through Obsidian Publish. These notes document my cybersecurity learning, home lab buildout, Malware Analysis, Active Directory work, and security monitoring practice.
+          My technical lab notes and writeups are published separately through Obsidian Publish. These notes document my cybersecurity learning, home lab buildout, malware analysis, Active Directory work, and security monitoring practice.
         </p>
         <br>
         <a class="button primary" href="https://labs.sawyermote.com" target="_blank">Open labs.sawyermote.com</a>
       </div>
     </section>
 
-    <section>
-      <h2>Technical Skills</h2>
-      <div class="skills">
-        <span class="skill">Windows Administration</span>
-        <span class="skill">Microsoft 365</span>
-        <span class="skill">Entra ID</span>
-        <span class="skill">Active Directory</span>
-        <span class="skill">Incident Response</span>
-        <span class="skill">SIEM Monitoring</span>
-        <span class="skill">Endpoint Support</span>
-        <span class="skill">Networking</span>
-        <span class="skill">Threat Hunting</span>
-        <span class="skill">Security Fundamentals</span>
-      </div>
-    </section>
-
     <section id="contact">
       <h2>Contact</h2>
       <div class="card">
-        <p>Email: Sawyermote33@gmail.com</p>
-        <p>LinkedIn: www.linkedin.com/in/sawyer-mote</p>
+        <p>Email: <a href="mailto:Sawyermote33@gmail.com">Sawyermote33@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/sawyer-mote" target="_blank">linkedin.com/in/sawyer-mote</a></p>
         <p>Phone: 945-213-6568</p>
       </div>
     </section>
@@ -368,4 +388,3 @@
 
 </body>
 </html>
-```
