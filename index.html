@@ -57,37 +57,78 @@
       overflow: hidden;
     }
 
-    .circuit::before,
-    .circuit::after {
-      content: "";
-      position: absolute;
-      opacity: 0;
-      filter: drop-shadow(0 0 12px rgba(0,180,255,.85));
-    }
+    .circuit svg {
+  position: absolute;
+  width: 140vw;
+  height: 220px;
+  left: -20vw;
+  opacity: 0;
+  filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.9));
+}
 
-    .circuit::before {
-      width: 1200px;
-      height: 90px;
-      top: 24%;
-      background:
-        linear-gradient(90deg, transparent 0%, transparent 10%, #00a2ff 11%, #00a2ff 32%, transparent 33%),
-        linear-gradient(135deg, transparent 37%, #00a2ff 39%, #00a2ff 41%, transparent 43%),
-        linear-gradient(90deg, transparent 48%, #39ffb6 50%, #39ffb6 70%, transparent 71%),
-        linear-gradient(45deg, transparent 73%, #00a2ff 75%, #00a2ff 77%, transparent 79%);
-      animation: dataflow1 3s infinite;
-    }
+.circuit .trace1 {
+  top: 18%;
+  animation: traceMove1 3.8s infinite;
+}
 
-    .circuit::after {
-      width: 1400px;
-      height: 100px;
-      top: 68%;
-      background:
-        linear-gradient(90deg, transparent 0%, transparent 15%, #39ffb6 16%, #39ffb6 34%, transparent 35%),
-        linear-gradient(45deg, transparent 39%, #00a2ff 41%, #00a2ff 43%, transparent 45%),
-        linear-gradient(90deg, transparent 50%, #00a2ff 52%, #00a2ff 76%, transparent 77%),
-        linear-gradient(135deg, transparent 80%, #39ffb6 82%, #39ffb6 84%, transparent 86%);
-      animation: dataflow2 4.5s infinite;
-    }
+.circuit .trace2 {
+  top: 62%;
+  animation: traceMove2 5.5s infinite;
+}
+
+.circuit path {
+  fill: none;
+  stroke: #00a2ff;
+  stroke-width: 3;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-dasharray: 90 900;
+}
+
+.circuit .trace2 path {
+  stroke: #39ffb6;
+  stroke-dasharray: 70 850;
+}
+
+@keyframes traceMove1 {
+  0%, 72%, 100% {
+    opacity: 0;
+    transform: translateX(-25vw);
+  }
+
+  75% {
+    opacity: .8;
+  }
+
+  90% {
+    opacity: .45;
+  }
+
+  100% {
+    transform: translateX(25vw);
+    opacity: 0;
+  }
+}
+
+@keyframes traceMove2 {
+  0%, 78%, 100% {
+    opacity: 0;
+    transform: translateX(25vw);
+  }
+
+  81% {
+    opacity: .65;
+  }
+
+  93% {
+    opacity: .3;
+  }
+
+  100% {
+    transform: translateX(-25vw);
+    opacity: 0;
+  }
+}
 
     @keyframes dataflow1 {
       0%, 78%, 100% {
@@ -309,7 +350,15 @@
 </head>
 
 <body>
-  <div class="circuit"></div>
+  <div class="circuit">
+  <svg class="trace1" viewBox="0 0 1200 220" preserveAspectRatio="none">
+    <path d="M0 110 L180 110 L240 60 L390 60 L460 130 L620 130 L700 80 L860 80 L940 145 L1200 145" />
+  </svg>
+
+  <svg class="trace2" viewBox="0 0 1200 220" preserveAspectRatio="none">
+    <path d="M1200 95 L1000 95 L930 150 L760 150 L690 80 L520 80 L450 125 L300 125 L220 70 L0 70" />
+  </svg>
+</div>
 
   <nav>
     <div class="inner">
