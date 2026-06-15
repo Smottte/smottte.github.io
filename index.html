@@ -86,6 +86,25 @@
 .pulse-b { top: 58%; animation: pulseB 6s infinite; }
 .pulse-c { top: 76%; animation: pulseC 8s infinite; }
 
+.reverse-pulse::before {
+  left: 0;
+  right: auto;
+}
+
+.reverse-pulse::after {
+  left: 6px;
+  right: auto;
+  background: linear-gradient(
+    270deg,
+    transparent,
+    rgba(0,162,255,.2),
+    rgba(0,162,255,.85)
+  );
+}
+
+.pulse-d { top: 36%; animation: pulseD 7s infinite; }
+.pulse-e { top: 68%; animation: pulseE 9s infinite; }
+
 @keyframes pulseA {
   0%, 65%, 100% { opacity: 0; left: -220px; }
   68% { opacity: .9; }
@@ -105,6 +124,45 @@
   85% { opacity: .65; }
   97% { opacity: .35; }
   100% { left: 110vw; opacity: 0; }
+}
+@keyframes pulseD {
+  0%, 74%, 100% {
+    opacity: 0;
+    left: 110vw;
+  }
+
+  77% {
+    opacity: .75;
+  }
+
+  96% {
+    opacity: .4;
+  }
+
+  100% {
+    left: -220px;
+    opacity: 0;
+  }
+}
+
+@keyframes pulseE {
+  0%, 82%, 100% {
+    opacity: 0;
+    left: 110vw;
+  }
+
+  85% {
+    opacity: .65;
+  }
+
+  97% {
+    opacity: .35;
+  }
+
+  100% {
+    left: -220px;
+    opacity: 0;
+  }
 }
     nav {
       position: sticky;
@@ -292,9 +350,13 @@
 </head>
 
 <body>
+<body>
 <div class="data-pulse pulse-a"></div>
 <div class="data-pulse pulse-b"></div>
 <div class="data-pulse pulse-c"></div>
+
+<div class="data-pulse reverse-pulse pulse-d"></div>
+<div class="data-pulse reverse-pulse pulse-e"></div>
   
   <nav>
     <div class="inner">
