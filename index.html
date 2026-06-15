@@ -331,14 +331,41 @@
 
     a { color: #39ffb6; }
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #7d8b99;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
+   footer {
+  text-align: center;
+  padding: 30px;
+  color: #7d8b99;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-    @media (max-width: 700px) {
+.review-img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.review-img:hover {
+  transform: scale(1.02);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+@media (max-width: 700px) {
       nav .links { display: none; }
 
       .hero {
@@ -483,11 +510,17 @@
   <div class="grid">
 
     <div class="card">
-      <img src="review1.png" style="width:100%; border-radius:10px;">
+      <img
+  src="review1.png"
+  class="review-img"
+  onclick="openImage(this.src)">
     </div>
 
     <div class="card">
-      <img src="review2.png" style="width:100%; border-radius:10px;">
+      <img
+  src="review2.png"
+  class="review-img"
+  onclick="openImage(this.src)">
     </div>
 
   </div>
@@ -519,6 +552,20 @@
   <footer>
     © 2026 Sawyer Mote · sawyermote.com
   </footer>
+  
+<div id="lightbox" class="lightbox" onclick="closeImage()">
+  <img id="lightbox-img" src="">
+</div>
 
+<script>
+function openImage(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeImage() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+</script>
 </body>
 </html>
