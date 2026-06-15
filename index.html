@@ -270,9 +270,21 @@
     .button:hover { transform: translateY(-3px); }
 
     .primary {
-      background: #39ffb6;
-      color: #03120d;
-      box-shadow: 0 0 22px rgba(57, 255, 182, 0.22);
+  background: #39ffb6;
+  color: #03120d;
+  box-shadow: 0 0 22px rgba(57, 255, 182, 0.22);
+  animation: labsPulse 3s ease-in-out infinite;
+}
+    @keyframes labsPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 15px rgba(57,255,182,.25);
+  }
+
+  50% {
+    box-shadow:
+      0 0 20px rgba(57,255,182,.45),
+      0 0 40px rgba(57,255,182,.25);
     }
 
     .secondary {
@@ -413,7 +425,12 @@
 
         <div class="buttons">
           <a class="button primary" href="/resume.pdf" target="_blank">View Resume</a>
-          <a class="button secondary" href="#projects">View Projects</a>
+          <a
+  class="button secondary"
+  href="#projects"
+  onclick="highlightLabs()">
+  View Projects
+</a>
         </div>
       </div>
     </section>
@@ -534,7 +551,13 @@
           My technical lab notes and writeups are published separately through Obsidian Publish. These notes document my cybersecurity learning, home lab buildout, malware analysis, Active Directory work, and security monitoring practice.
         </p>
         <br>
-        <a class="button primary" href="https://publish.obsidian.md/sawyermote" target="_blank">View my research and labs</a>
+        <a
+  id="labsButton"
+  class="button primary"
+  href="https://publish.obsidian.md/sawyermote"
+  target="_blank">
+  View my research and labs
+</a>
       </div>
     </section>
 
@@ -567,5 +590,31 @@ function closeImage() {
   document.getElementById('lightbox').style.display = 'none';
 }
 </script>
+
+  <script>
+function highlightLabs() {
+
+  const btn = document.getElementById("labsButton");
+
+  btn.animate([
+    {
+      transform: "scale(1)",
+      boxShadow: "0 0 20px rgba(57,255,182,.3)"
+    },
+    {
+      transform: "scale(1.12)",
+      boxShadow: "0 0 50px rgba(57,255,182,.9)"
+    },
+    {
+      transform: "scale(1)"
+    }
+  ], {
+    duration: 1500,
+    iterations: 3
+  });
+
+}
+</script>
+  
 </body>
 </html>
