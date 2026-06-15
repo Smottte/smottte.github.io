@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sawyer Mote | Cybersecurity Portfolio</title>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #050816;
+      color: #e6edf3;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 120px,
+          rgba(0,162,255,.035) 121px,
+          rgba(0,162,255,.035) 122px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 120px,
+          rgba(57,255,182,.025) 121px,
+          rgba(57,255,182,.025) 122px
+        ),
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 170, 0.13), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(0, 132, 255, 0.17), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(57, 255, 182, 0.08), transparent 30%),
+        linear-gradient(135deg, #050816, #07111f 50%, #030712);
+      z-index: -3;
+    }
+
+    .data-pulse {
+      position: fixed;
+      width: 180px;
+      height: 6px;
+      pointer-events: none;
+      z-index: -2;
+      opacity: 0;
+    }
+
+    .data-pulse::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #00a2ff;
+      box-shadow: 0 0 10px #00a2ff, 0 0 24px #00a2ff;
+      transform: translateY(-50%);
+    }
+
+    .data-pulse::after {
+      content: "";
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      width: 170px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(0,162,255,.2), rgba(0,162,255,.85));
+      box-shadow: 0 0 12px rgba(0,162,255,.65);
+      transform: translateY(-50%);
+    }
+
+    .pulse-a { top: 24%; animation: pulseA 4s infinite; }
+    .pulse-b { top: 58%; animation: pulseB 6s infinite; }
+    .pulse-c { top: 76%; animation: pulseC 8s infinite; }
+
+    .reverse-pulse::before {
+      left: 0;
+      right: auto;
+    }
+
+    .reverse-pulse::after {
+      left: 6px;
+      right: auto;
+      background: linear-gradient(
+        270deg,
+        transparent,
+        rgba(0,162,255,.2),
+        rgba(0,162,255,.85)
+      );
+    }
+
+    .pulse-d { top: 36%; animation: pulseD 7s infinite; }
+    .pulse-e { top: 68%; animation: pulseE 9s infinite; }
+
+    @keyframes pulseA {
+      0%, 65%, 100% { opacity: 0; left: -220px; }
+      68% { opacity: .9; }
+      95% { opacity: .55; }
+      100% { left: 110vw; opacity: 0; }
+    }
+
+    @keyframes pulseB {
+      0%, 75%, 100% { opacity: 0; left: -220px; }
+      78% { opacity: .7; }
+      96% { opacity: .4; }
+      100% { left: 110vw; opacity: 0; }
+    }
+
+    @keyframes pulseC {
+      0%, 82%, 100% { opacity: 0; left: -220px; }
+      85% { opacity: .65; }
+      97% { opacity: .35; }
+      100% { left: 110vw; opacity: 0; }
+    }
+
+    @keyframes pulseD {
+      0%, 74%, 100% { opacity: 0; left: 110vw; }
+      77% { opacity: .75; }
+      96% { opacity: .4; }
+      100% { left: -220px; opacity: 0; }
+    }
+
+    @keyframes pulseE {
+      0%, 82%, 100% { opacity: 0; left: 110vw; }
+      85% { opacity: .65; }
+      97% { opacity: .35; }
+      100% { left: -220px; opacity: 0; }
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 8, 22, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 10;
+    }
+
+    nav .inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #c9d1d9;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover { color: #39ffb6; }
+
+    .brand {
+      font-weight: 700;
+      color: #39ffb6;
+      text-shadow: 0 0 15px rgba(57,255,182,.4);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 50px 24px;
+    }
+
+    .hero {
+      min-height: 45vh;
+      display: flex;
+      align-items: center;
+      padding-top: 45px;
+      padding-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(57, 255, 182, 0.35);
+      border-radius: 999px;
+      color: #39ffb6;
+      background: rgba(57, 255, 182, 0.08);
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    h3 {
+      color: #39ffb6;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.35rem;
+      color: #b7c3d0;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      max-width: 780px;
+      color: #9fb0c0;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 13px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+
+    .primary {
+      background: #39ffb6;
+      color: #03120d;
+      box-shadow: 0 0 22px rgba(57, 255, 182, 0.22);
+    }
+
+    .labs-cta {
+      animation: labsPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes labsPulse {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(57,255,182,.25);
+      }
+
+      50% {
+        box-shadow:
+          0 0 20px rgba(57,255,182,.45),
+          0 0 40px rgba(57,255,182,.25);
+      }
+    }
+
+    .secondary {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #e6edf3;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    section { padding: 45px 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(57, 255, 182, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card p, li { color: #b7c3d0; }
+
+    ul { padding-left: 20px; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0, 132, 255, 0.12);
+      border: 1px solid rgba(0, 132, 255, 0.25);
+      color: #dbeafe;
+      font-size: 0.9rem;
+    }
+
+    a { color: #39ffb6; }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #7d8b99;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .review-img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .review-img:hover {
+      transform: scale(1.02);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 700px) {
+      nav .links { display: none; }
+
+      .hero {
+        min-height: auto;
+        padding-top: 70px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="data-pulse pulse-a"></div>
+  <div class="data-pulse pulse-b"></div>
+  <div class="data-pulse pulse-c"></div>
+  <div class="data-pulse reverse-pulse pulse-d"></div>
+  <div class="data-pulse reverse-pulse pulse-e"></div>
+
+  <nav>
+    <div class="inner">
+      <div class="brand">Sawyer Mote</div>
+      <div class="links">
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#certs">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#labs">Labs</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <section class="hero">
+      <div>
+        <div class="badge">IT Help Desk → Cybersecurity</div>
+        <h1>Sawyer Mote</h1>
+        <div class="subtitle">IT Support Specialist | Aspiring Cybersecurity Analyst</div>
+        <p>
+          I am an IT professional currently working in help desk support and building toward a cybersecurity career focused on security operations, threat detection, incident response, and defensive security. I use hands-on labs to strengthen my skills in Windows administration, Active Directory, SIEM monitoring, Microsoft security tools, and enterprise infrastructure.
+        </p>
+
+        <div class="buttons">
+          <a class="button primary" href="/resume.pdf" target="_blank">View Resume</a>
+          <a class="button secondary" href="#projects" onclick="highlightLabs()">View Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <span class="skill">Windows Administration</span>
+        <span class="skill">Microsoft 365</span>
+        <span class="skill">Entra ID</span>
+        <span class="skill">Active Directory</span>
+        <span class="skill">Incident Response</span>
+        <span class="skill">SIEM Monitoring</span>
+        <span class="skill">Endpoint Support</span>
+        <span class="skill">Networking</span>
+        <span class="skill">Threat Hunting</span>
+        <span class="skill">Security Fundamentals</span>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>
+          I currently work in IT help desk support, where I troubleshoot user issues, support Microsoft 365 environments, assist with endpoint problems, and work with common business technology systems. My long-term goal is to transition into cybersecurity, especially roles involving SOC operations, identity security, endpoint defense, and incident response.
+        </p>
+        <br>
+        <p>
+          I am building a documented home lab to practice real-world security concepts including Active Directory administration, Windows event logging, Wazuh SIEM monitoring, vulnerability awareness, and detection workflows.
+        </p>
+      </div>
+    </section>
+
+    <section id="certs">
+      <h2>Certifications</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>CompTIA</h3>
+          <ul>
+            <li>A+</li>
+            <li>Network+</li>
+            <li>Security+</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Microsoft</h3>
+          <ul>
+            <li>SC-900</li>
+            <li>SC-300</li>
+            <li>SC-200</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Currently Studying</h3>
+          <ul>
+            <li>SANS FOR509</li>
+            <li>SC-102</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Wazuh SIEM Home Lab</h3>
+          <p>
+            Built a security monitoring lab using Wazuh, Windows endpoints, Active Directory, and Proxmox to collect logs, review alerts, and practice detection workflows.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Active Directory Lab</h3>
+          <p>
+            Created a Windows domain environment to practice identity management, group policy concepts, Windows event logs, and domain-based administration.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Microsoft 365 Administration</h3>
+          <p>
+            Hands-on experience supporting Microsoft 365, Entra ID, endpoint management, email troubleshooting, and user account administration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <h2>Client Feedback</h2>
+
+      <div class="grid">
+        <div class="card">
+          <img
+            src="review1.png"
+            class="review-img"
+            alt="Google review mentioning Sawyer Mote"
+            onclick="openImage(this.src)">
+        </div>
+
+        <div class="card">
+          <img
+            src="review2.png"
+            class="review-img"
+            alt="Google review mentioning Sawyer Mote"
+            onclick="openImage(this.src)">
+        </div>
+      </div>
+    </section>
+
+    <section id="labs">
+      <h2>Lab Documentation</h2>
+      <div class="card">
+        <p>
+          My technical lab notes and writeups are published separately through Obsidian Publish. These notes document my cybersecurity learning, home lab buildout, malware analysis, Active Directory work, and security monitoring practice.
+        </p>
+        <br>
+        <a
+          id="labsButton"
+          class="button primary labs-cta"
+          href="https://publish.obsidian.md/sawyermote"
+          target="_blank">
+          View my research and labs
+        </a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:Sawyermote33@gmail.com">Sawyermote33@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/sawyer-mote" target="_blank">linkedin.com/in/sawyer-mote</a></p>
+        <p>Phone: 945-213-6568</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Sawyer Mote · sawyermote.com
+  </footer>
+
+  <div id="lightbox" class="lightbox" onclick="closeImage()">
+    <img id="lightbox-img" src="" alt="Expanded review">
+  </div>
+
+  <script>
+    function openImage(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    function highlightLabs() {
+      const btn = document.getElementById("labsButton");
+
+      if (!btn) return;
+
+      btn.animate([
+        {
+          transform: "scale(1)",
+          boxShadow: "0 0 20px rgba(57,255,182,.3)"
+        },
+        {
+          transform: "scale(1.12)",
+          boxShadow: "0 0 50px rgba(57,255,182,.9)"
+        },
+        {
+          transform: "scale(1)"
+        }
+      ], {
+        duration: 1500,
+        iterations: 3
+      });
+    }
+  </script>
+
+</body>
+</html>
