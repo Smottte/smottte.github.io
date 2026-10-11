@@ -351,33 +351,6 @@
       font-size: 0.85rem;
     }
 
-    .review-img {
-      width: 100%;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .review-img:hover {
-      transform: scale(1.02);
-    }
-
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-      background: rgba(0,0,0,.9);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-    }
-
     @media (max-width: 700px) {
       nav .links { display: none; }
 
@@ -557,29 +530,38 @@
           </figcaption>
         </figure>
 
-        <div class="card">
-          <img
-            src="review1.png"
-            class="review-img"
-            alt="Google review mentioning Sawyer Mote"
-            onclick="openImage(this.src)">
-        </div>
+        <figure class="card">
+          <div class="review-rating" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="review-quote">
+            I had a great experience with Justice IT. I especially appreciated the clear communication and the professional level of Sawyer. He walked me through everything to get our server working properly.
+          </blockquote>
+          <figcaption>
+            <div class="review-author">Amanda Beene</div>
+            <div class="review-source">Google review</div>
+          </figcaption>
+        </figure>
 
-        <div class="card">
-          <img
-            src="review2.png"
-            class="review-img"
-            alt="Google review mentioning Sawyer Mote"
-            onclick="openImage(this.src)">
-        </div>
-        
-        <div class="card">
-   <img
-    src="review3.png"
-    class="review-img"
-    alt="Google review mentioning Sawyer Mote"
-    onclick="openImage(this.src)">
-</div>
+        <figure class="card">
+          <div class="review-rating" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="review-quote">
+            Sawyer is amazing !!!A5 out of 5 stars – reliable, efficient, knowledgeable, thorough, friendly. I hired Justice IT Consulting IT and Cybersecurity Services DFW for IT support and they were fantastic. The technician arrived on time, explained everything clearly, and resolved the issue quickly. Their team was professional and really took the time to make sure my network was secure and running smoothly. I felt confident in their expertise and appreciated the friendly service. Highly recommend for any business looking for reliable tech support.
+          </blockquote>
+          <figcaption>
+            <div class="review-author">Greg Chavez</div>
+            <div class="review-source">Google review</div>
+          </figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="review-rating" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="review-quote">
+            I was helped quick and efficiently by Sawyer. He got our office taken care of so we could get back to work! Thank you, Sawyer! Justice IT Consulting IT and Cybersecurity Services DFW provided excellent IT support. From the first phone call to the final check, everything was efficient and reliable. The technician was knowledgeable and explained everything in a friendly way, and they were thorough in checking the network. I felt confident in their business IT services and would definitely recommend hem for any tech support needs.
+          </blockquote>
+          <figcaption>
+            <div class="review-author">Meghan Rodriguez</div>
+            <div class="review-source">Google review</div>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -593,7 +575,7 @@
         <a
           id="labsButton"
           class="button primary labs-cta"
-          href="https://publish.obsidian.md/sawyermote"
+          href="https://publish.obsidian.md/sawyermote/Publish/About+Me/A+Little+About+Me"
           target="_blank">
           View my research and labs
         </a>
@@ -615,20 +597,7 @@
     © 2026 Sawyer Mote · sawyermote.com
   </footer>
 
-  <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <img id="lightbox-img" src="" alt="Expanded review">
-  </div>
-
   <script>
-    function openImage(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-
     function highlightLabs() {
       const btn = document.getElementById("labsButton");
 
